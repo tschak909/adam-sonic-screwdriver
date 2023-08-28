@@ -6,6 +6,29 @@
  * @verbose Main entrypoint
  */
 
+#include <stdbool.h>
+#include "state.h"
+#include "splash.h"
+#include "scan.h"
+#include "halt.h"
+
+State state=SPLASH;
+
 void main(void)
 {
+  while(true)
+    {
+      switch(state)
+	{
+	case SPLASH:
+	  splash();
+	  break;
+	case SCAN:
+	  scan();
+	  break;
+	case HALT:
+	  halt();
+	  break;
+	}
+    }
 }
