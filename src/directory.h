@@ -3,18 +3,12 @@
  * @author  Thomas Cherryhomes
  * @email   thom dot cherryhomes at gmail dot com
  * @license gpl v. 3, see LICENSE for details.
- * @verbose State typedefs
+ * @verbose Directory display
  */
 
-#ifndef STATE_H
-#define STATE_H
+#ifndef DIRECTORY_H
+#define DIRECTORY_H
 
-typedef enum _state
-  {
-    SPLASH,
-    SCAN,
-    DIRECTORY,
-    HALT
-  } State;
+void directory(void);
 
-#endif /* STATE_H */
+#endif /* DIRECTORY_H */

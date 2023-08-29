@@ -10,9 +10,10 @@
 #include "state.h"
 #include "splash.h"
 #include "scan.h"
+#include "directory.h"
 #include "halt.h"
 
-State state=SPLASH;
+State state=DIRECTORY;
 
 void main(void)
 {
@@ -25,6 +26,9 @@ void main(void)
 	  break;
 	case SCAN:
 	  scan();
+	  break;
+	case DIRECTORY:
+	  directory();
 	  break;
 	case HALT:
 	  halt();
