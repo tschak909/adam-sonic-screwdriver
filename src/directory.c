@@ -6,12 +6,14 @@
  * @verbose Directory display
  */
 
+#include <eos.h>
 #include <msx.h>
 #include <smartkeys.h>
 #include <conio.h>
 #include "directory.h"
 #include "state.h"
 #include "rleunpack.h"
+#include "eos_filesystem.h"
 
 extern State state;
 
@@ -148,7 +150,7 @@ unsigned char directory_colors[] = {
 
 // Display current directory page in Directory
 
-void directory(void)
+void directory_display(void)
 {
   RLEUnpack(0x0000,directory_pixels,MODE2_MAX);
   RLEUnpack(0x2000,directory_colors,MODE2_MAX);
@@ -167,5 +169,13 @@ void directory(void)
       cputs(directory_files[i]);
     }
 
+  state=HALT;
+}
+
+unsigned char buf[8192];
+
+void directory(void)
+{
+  cprintf("EOS filesystem in 0x05? %u\n",is_eos_filesystem(0x04));
   state=HALT;
 }
