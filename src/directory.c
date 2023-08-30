@@ -17,6 +17,7 @@
 #include "cpm_filesystem.h"
 #include "buffer.h"
 #include "globals.h"
+#include "input.h"
 
 // RLE encoded pixel data to go to VDP address 0x0000
 static const unsigned char directory_pixels[] = {
@@ -133,9 +134,8 @@ void directory_display_eos(void)
   unsigned char err=0, r=0;
   DirectoryEntry *d = (DirectoryEntry *)buffer;
   unsigned char i=1, pos=0;
-  char fn[12]={0,0,0,0,0,0,0,0,0,0,0,0};
   char vn[12]={0,0,0,0,0,0,0,0,0,0,0,0};
-  char vt, ft;
+  char vt;
   
   r = directory_read_eos(current_device,buffer,BUFFER_SIZE,&err,&rlen);
 
@@ -165,6 +165,8 @@ void directory_display_eos(void)
 	}
       else
 	{
+	  char fn[12]={0,0,0,0,0,0,0,0,0,0,0,0};
+	  char ft;
 	  directory_filename(d[i],fn,&ft);
 	  directory_display_entry(fn,pos);	  
 	  pos++;
@@ -180,8 +182,6 @@ void directory_display_cpm(void)
   CpmDirectoryEntry *d = (CpmDirectoryEntry *)buffer;
   unsigned char entry=0, slot=0;
   
-  directory_bkg();
-
   // put CP/M in TAB
   msx_color(1,15,7);
   gotoxy(3,1);
@@ -219,9 +219,38 @@ void directory_display_cpm(void)
 
 void directory(void)
 {
-  directory_display_cpm();
   msx_set_border(7);
+
+  directory_bkg();
+  
+  switch (current_filesystem)
+    {
+    case EOS:
+      directory_display_eos();
+      break;
+    case CPM:
+      directory_display_cpm();
+      break;
+    }
+
   smartkeys_display(NULL,NULL,NULL,"  FILE\n FUNCS"," DRIVE\n FUNCS","  CHANGE\n  DRIVE");
   smartkeys_status(" COMING SOON:\n ADAM'S SONIC SCREWDRIVER\n");
-  state=HALT;
+
+  eos_start_read_keyboard();
+  
+  while (state==DIRECTORY)
+    {
+      switch(input())
+	{
+	case 0x84:
+	  break;
+	case 0x85:
+	  break;
+	case 0x86:
+	  state=SELECT_DRIVE;
+	  break;
+	}
+    }
+
+  eos_end_read_keyboard();
 }
