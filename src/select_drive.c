@@ -16,7 +16,6 @@
 
 void select_drive(void)
 {
-  directory_bkg();
   smartkeys_display("  \x1f\x1f\x1f\x1f""DEVICE\n     4"," \x1f\x1f""DEVICE\n   \x1f\x1f""5"," \x1f\x1f""DEVICE\n   \x1f\x1f""6"," \x1f\x1f""DEVICE\n   \x1f\x1f""7"," \x1f\x1f""DEVICE\n   \x1f\x1f""8"," \x1f\x1f\x1f""DEVICE\n   18");
 
   eos_start_read_keyboard();
@@ -26,20 +25,31 @@ void select_drive(void)
       switch(input())
 	{
 	case 0x81:
+	  current_device=4;
+	  state=SCAN;
 	  break;
 	case 0x82:
+	  current_device=5;
+	  state=SCAN;
 	  break;
 	case 0x83:
+	  current_device=6;
+	  state=SCAN;
 	  break;
 	case 0x84:
+	  current_device=7;
+	  state=SCAN;
 	  break;
 	case 0x85:
+	  current_device=8;
+	  state=SCAN;
 	  break;
 	case 0x86:
+	  current_device=18;
+	  state=SCAN;
 	  break;
 	}
     }
   
   eos_end_read_keyboard();
-  state=HALT;
 }

@@ -15,11 +15,15 @@
 #include "directory.h"
 #include "hex_view.h"
 #include "halt.h"
+#include "globals.h"
 
-State state=DIRECTORY;
+State state=SCAN;
 
 void main(void)
 {
+  // Set current device to boot device
+  current_device = (*(unsigned char *)0xFD6F);
+
   smartkeys_sound_init();
   
   while(true)
