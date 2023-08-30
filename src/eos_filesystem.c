@@ -60,7 +60,7 @@ bool entry_is_locked(DirectoryEntry *d)
   return (d->attributes & ENTRY_ATTRIBUTE_LOCKED) == ENTRY_ATTRIBUTE_LOCKED;
 }
 
-bool directory_read(unsigned char dev, unsigned char *buf, unsigned short len, unsigned char *err, unsigned short *rlen)
+bool directory_read_eos(unsigned char dev, unsigned char *buf, unsigned short len, unsigned char *err, unsigned short *rlen)
 {
   unsigned char f; // fileno
   

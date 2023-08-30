@@ -13,9 +13,10 @@
 #include "scan.h"
 #include "select_drive.h"
 #include "directory.h"
+#include "hex_view.h"
 #include "halt.h"
 
-State state=SCAN;
+State state=DIRECTORY;
 
 void main(void)
 {
@@ -36,6 +37,9 @@ void main(void)
 	  break;
 	case DIRECTORY:
 	  directory();
+	  break;
+	case HEX_VIEW:
+	  hex_view();
 	  break;
 	case HALT:
 	  halt();

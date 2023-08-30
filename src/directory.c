@@ -14,6 +14,7 @@
 #include "state.h"
 #include "rleunpack.h"
 #include "eos_filesystem.h"
+#include "cpm_filesystem.h"
 #include "buffer.h"
 #include "globals.h"
 
@@ -108,18 +109,35 @@ void directory_bkg(void)
   RLEUnpack(0x2000,directory_colors,MODE2_MAX);
 }
 
-// Display current directory page in Directory
+// Print entry into slot on screen at pos
 
-void directory_display(void)
+void directory_display_entry(char *s, unsigned char pos)
+{
+  int r = pos >> 1;
+  int c = pos % 2;
+  int y = r + 3;
+  int x = c ? 17 : 4;
+  int b = r % 2 ? 0x0F : 0x07;
+  
+  msx_color(1,b,7);
+  gotoxy(x,y);
+  
+  cputs(s);
+}
+
+// Display current directory page in Directory (EOS)
+
+void directory_display_eos(void)
 {
   unsigned short rlen=0;
   unsigned char err=0, r=0;
   DirectoryEntry *d = (DirectoryEntry *)buffer;
   unsigned char i=1, pos=0;
+  char fn[12]={0,0,0,0,0,0,0,0,0,0,0,0};
   char vn[12]={0,0,0,0,0,0,0,0,0,0,0,0};
-  char vt;
+  char vt, ft;
   
-  r = directory_read(current_device,buffer,BUFFER_SIZE,&err,&rlen);
+  r = directory_read_eos(current_device,buffer,BUFFER_SIZE,&err,&rlen);
 
   // Put volume name in tab
   msx_color(1,15,7);
@@ -147,30 +165,62 @@ void directory_display(void)
 	}
       else
 	{
-	  int r = pos >> 1;
-	  int c = pos % 2;
-	  int y = r + 3;
-	  int x = c ? 17 : 4;
-	  int b = r % 2 ? 0x0F : 0x07;
-	  char fn[12] = {0,0,0,0,0,0,0,0,0,0,0,0};
-	  char ft=0;
-
-	  msx_color(1,b,7);
-	  gotoxy(x,y);
-
 	  directory_filename(d[i],fn,&ft);
-	  cputs(fn);
-
+	  directory_display_entry(fn,pos);	  
 	  pos++;
 	  i++;
 	}
     }  
 }
 
+void directory_display_cpm(void)
+{
+  // This is currently a testing harness
+
+  CpmDirectoryEntry *d = (CpmDirectoryEntry *)buffer;
+  unsigned char entry=0, slot=0;
+  
+  directory_bkg();
+
+  // put CP/M in TAB
+  msx_color(1,15,7);
+  gotoxy(3,1);
+  cputs(" CP/M VOLUME");
+
+  current_device=0x05;
+  directory_read_cpm(current_device);
+  
+  while (entry<64)
+    {
+      if (d[entry].user == 0xE5) // Empty entry
+	{
+	  entry++;
+	  continue;
+	}
+      else if (d[entry].extent_number > 0) // file extent, skip.
+	{
+	  entry++;
+	  continue;
+	}
+      else if (valid_cpm_filename_character(d[entry].filename[0]))
+	{
+	  char fn[14]={0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+
+	  memcpy(&fn[0],d[entry].filename,8);
+	  memcpy(&fn[8],d[entry].extension,3);
+
+	  directory_display_entry(fn,slot);
+
+	  slot++;
+	  entry++;
+	}
+    }
+}
+
 void directory(void)
 {
+  directory_display_cpm();
   msx_set_border(7);
-  directory_display();
   smartkeys_display(NULL,NULL,NULL,"  FILE\n FUNCS"," DRIVE\n FUNCS","  CHANGE\n  DRIVE");
   smartkeys_status(" COMING SOON:\n ADAM'S SONIC SCREWDRIVER\n");
   state=HALT;

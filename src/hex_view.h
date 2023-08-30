@@ -3,20 +3,12 @@
  * @author  Thomas Cherryhomes
  * @email   thom dot cherryhomes at gmail dot com
  * @license gpl v. 3, see LICENSE for details.
- * @verbose State typedefs
+ * @verbose Hex View
  */
 
-#ifndef STATE_H
-#define STATE_H
+#ifndef HEX_VIEW_H
+#define HEX_VIEW_H
 
-typedef enum _state
-  {
-    SPLASH,
-    SCAN,
-    SELECT_DRIVE,
-    DIRECTORY,
-    HEX_VIEW,
-    HALT
-  } State;
+void hex_view(void);
 
-#endif /* STATE_H */
+#endif /* HEX_VIEW_H */

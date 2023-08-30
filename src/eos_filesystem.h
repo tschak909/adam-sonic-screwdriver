@@ -92,7 +92,7 @@ bool entry_is_locked(DirectoryEntry *d);
  * @param err Put error code in this variable
  * @param rlen Put received # of bytes in this variable
  */
-bool directory_read(unsigned char dev, unsigned char *buf, unsigned short len, unsigned char *err, unsigned short *rlen);
+bool directory_read_eos(unsigned char dev, unsigned char *buf, unsigned short len, unsigned char *err, unsigned short *rlen);
 
 /**
  * @brief Return filename and file type for directory entry

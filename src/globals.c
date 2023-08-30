@@ -9,4 +9,4 @@
 #include "globals.h"
 
 char current_device=5;
-FileSystem current_filesystem;
+FileSystem current_filesystem=UNKNOWN_FILESYSTEM;

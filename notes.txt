@@ -1,0 +1,2 @@
+CP/M detection method
+via directory, check if second byte in block is printable ascii character.

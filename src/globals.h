@@ -13,6 +13,7 @@
 
 typedef enum _filesystem
   {
+    UNKNOWN_FILESYSTEM,
     EOS,
     CPM
   } FileSystem;

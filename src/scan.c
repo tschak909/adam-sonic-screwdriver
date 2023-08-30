@@ -10,13 +10,25 @@
 #include <smartkeys.h>
 #include <string.h>
 #include <stdio.h>
+#include <conio.h>
 #include <stdbool.h>
 #include "globals.h"
 #include "scan.h"
 #include "state.h"
+#include "eos_filesystem.h"
+#include "cpm_filesystem.h"
+#include "buffer.h"
 
 bool valid_diskette(void)
 {
+  current_filesystem=UNKNOWN_FILESYSTEM;
+  
+  if (volume_is_eos_filesystem(current_device))
+    current_filesystem=EOS;
+  else if (volume_is_cpm_filesystem(current_device))
+    current_filesystem=CPM;
+
+  return current_filesystem;
 }
 
 void invalid_diskette(void)
@@ -31,8 +43,9 @@ void invalid_diskette(void)
 
 void scan(void)
 {
+  
   if (!valid_diskette())
     invalid_diskette();
-
+  
   state=HALT;
 }
