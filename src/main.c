@@ -15,7 +15,7 @@
 #include "directory.h"
 #include "halt.h"
 
-State state=SELECT_DRIVE;
+State state=SCAN;
 
 void main(void)
 {
