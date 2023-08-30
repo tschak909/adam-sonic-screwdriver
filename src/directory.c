@@ -103,6 +103,14 @@ unsigned char directory_colors[] = {
   0xa4, 0x17
 };
 
+void directory_bkg(void)
+{
+  msx_color(1,15,7);
+  msx_set_border(7);
+  RLEUnpack(0x0000,directory_pixels,MODE2_MAX);
+  RLEUnpack(0x2000,directory_colors,MODE2_MAX);
+}
+
 // Display current directory page in Directory
 
 void directory_display(void)
@@ -114,9 +122,6 @@ void directory_display(void)
   char vn[12]={0,0,0,0,0,0,0,0,0,0,0,0};
   char vt;
   
-  RLEUnpack(0x0000,directory_pixels,MODE2_MAX);
-  RLEUnpack(0x2000,directory_colors,MODE2_MAX);
-
   r = directory_read(current_dev,buffer,BUFFER_SIZE,&err,&rlen);
 
   // Put volume name in tab

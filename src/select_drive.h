@@ -3,19 +3,12 @@
  * @author  Thomas Cherryhomes
  * @email   thom dot cherryhomes at gmail dot com
  * @license gpl v. 3, see LICENSE for details.
- * @verbose State typedefs
+ * @verbose Select drive
  */
 
-#ifndef STATE_H
-#define STATE_H
+#ifndef SELECT_DRIVE_H
+#define SELECT_DRIVE_H
 
-typedef enum _state
-  {
-    SPLASH,
-    SCAN,
-    SELECT_DRIVE,
-    DIRECTORY,
-    HALT
-  } State;
+void select_drive(void);
 
-#endif /* STATE_H */
+#endif /* SELECT_DRIVE_H */

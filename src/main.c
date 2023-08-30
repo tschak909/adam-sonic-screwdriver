@@ -6,17 +6,21 @@
  * @verbose Main entrypoint
  */
 
+#include <smartkeys.h>
 #include <stdbool.h>
 #include "state.h"
 #include "splash.h"
 #include "scan.h"
+#include "select_drive.h"
 #include "directory.h"
 #include "halt.h"
 
-State state=DIRECTORY;
+State state=SELECT_DRIVE;
 
 void main(void)
 {
+  smartkeys_sound_init();
+  
   while(true)
     {
       switch(state)
@@ -26,6 +30,9 @@ void main(void)
 	  break;
 	case SCAN:
 	  scan();
+	  break;
+	case SELECT_DRIVE:
+	  select_drive();
 	  break;
 	case DIRECTORY:
 	  directory();

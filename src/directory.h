@@ -9,6 +9,7 @@
 #ifndef DIRECTORY_H
 #define DIRECTORY_H
 
+void directory_bkg(void);
 void directory(void);
 
 #endif /* DIRECTORY_H */
