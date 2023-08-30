@@ -9,6 +9,16 @@
 #ifndef GLOBALS_H
 #define GLOBALS_H
 
+#include "state.h"
+
+typedef enum _filesystem
+  {
+    EOS,
+    CPM
+  } FileSystem;
+
+extern FileSystem current_filesystem;
 extern char current_device;
+extern State state;
 
 #endif /* GLOBALS_H */

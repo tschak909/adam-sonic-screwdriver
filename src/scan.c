@@ -15,11 +15,8 @@
 #include "scan.h"
 #include "state.h"
 
-extern State state;
-
 bool valid_diskette(void)
 {
-  return false;
 }
 
 void invalid_diskette(void)

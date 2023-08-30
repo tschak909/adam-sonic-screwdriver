@@ -12,8 +12,7 @@
 #include "input.h"
 #include "state.h"
 #include "directory.h"
-
-extern State state;
+#include "globals.h"
 
 void select_drive(void)
 {
