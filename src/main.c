@@ -16,8 +16,10 @@
 #include "hex_view.h"
 #include "halt.h"
 #include "globals.h"
+#include "menu_main.h"
+#include "menu_file.h"
 
-State state=SCAN;
+State state=MENU_FILE;
 
 void main(void)
 {
@@ -41,6 +43,12 @@ void main(void)
 	  break;
 	case DIRECTORY:
 	  directory();
+	  break;
+	case MENU_MAIN:
+	  menu_main();
+	  break;
+	case MENU_FILE:
+	  menu_file();
 	  break;
 	case HEX_VIEW:
 	  hex_view();

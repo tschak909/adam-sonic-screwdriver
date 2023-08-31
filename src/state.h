@@ -16,6 +16,8 @@ typedef enum _state
     SELECT_DRIVE,
     DIRECTORY,
     HEX_VIEW,
+    MENU_MAIN,
+    MENU_FILE,
     HALT
   } State;
 

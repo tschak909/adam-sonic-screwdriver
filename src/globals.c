@@ -10,3 +10,6 @@
 
 char current_device=5;
 FileSystem current_filesystem=UNKNOWN_FILESYSTEM;
+char current_page=0;
+unsigned char selected_files_indexes[256];
+unsigned char selected_files=0;

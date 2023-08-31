@@ -219,8 +219,6 @@ void directory_display_cpm(void)
 
 void directory(void)
 {
-  msx_set_border(7);
-
   directory_bkg();
   
   switch (current_filesystem)
@@ -232,25 +230,4 @@ void directory(void)
       directory_display_cpm();
       break;
     }
-
-  smartkeys_display(NULL,NULL,NULL,"  FILE\n FUNCS"," DRIVE\n FUNCS","  CHANGE\n  DRIVE");
-  smartkeys_status(" COMING SOON:\n ADAM'S SONIC SCREWDRIVER\n");
-
-  eos_start_read_keyboard();
-  
-  while (state==DIRECTORY)
-    {
-      switch(input())
-	{
-	case 0x84:
-	  break;
-	case 0x85:
-	  break;
-	case 0x86:
-	  state=SELECT_DRIVE;
-	  break;
-	}
-    }
-
-  eos_end_read_keyboard();
 }
