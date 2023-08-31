@@ -21,6 +21,8 @@ typedef enum _filesystem
 extern FileSystem current_filesystem;
 extern char current_device;
 extern char current_page;
+extern unsigned short current_size;
+extern unsigned short current_free;
 extern State state;
 extern unsigned char selected_files_indexes[256];
 extern unsigned char selected_files;

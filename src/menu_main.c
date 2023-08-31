@@ -9,14 +9,21 @@
 #include <eos.h>
 #include <smartkeys.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include "input.h"
 #include "state.h"
 #include "globals.h"
 
 void menu_main(void)
 {
+  char tmp[48];
+
+  current_size=160;
+  current_free=20;
+  
+  snprintf(tmp,sizeof(tmp),"   DEVICE %02u\n   %4uK SIZE\n   %4uK FREE",current_device,current_size,current_free);
   smartkeys_display(NULL,NULL,NULL,"  FILE\n FUNCS"," DRIVE\n FUNCS","  CHANGE\n  DRIVE");
-  smartkeys_status(" COMING SOON:\n ADAM'S SONIC SCREWDRIVER\n");
+  smartkeys_status(tmp);
 
   eos_start_read_keyboard();
   

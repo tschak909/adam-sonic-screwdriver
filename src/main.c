@@ -19,7 +19,7 @@
 #include "menu_main.h"
 #include "menu_file.h"
 
-State state=MENU_FILE;
+State state=MENU_MAIN;
 
 void main(void)
 {
