@@ -19,6 +19,7 @@ typedef enum _state
     MENU_MAIN,
     MENU_FILE,
     PROPERTIES,
+    VOLUME_MAP,
     HALT
   } State;
 

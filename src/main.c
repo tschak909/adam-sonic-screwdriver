@@ -19,14 +19,14 @@
 #include "menu_main.h"
 #include "menu_file.h"
 #include "properties.h"
+#include "volume_map.h"
 
 State state=SCAN;
 
 void main(void)
 {
   // Set current device to boot device
-  //current_device = (*(unsigned char *)0xFD6F);
-  current_device=0x05;
+  current_device = (*(unsigned char *)0xFD6F);
 
   smartkeys_sound_init();
   
@@ -57,6 +57,9 @@ void main(void)
 	  break;
 	case PROPERTIES:
 	  properties();
+	  break;
+	case VOLUME_MAP:
+	  volume_map();
 	  break;
 	case HALT:
 	  halt();

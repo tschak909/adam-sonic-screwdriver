@@ -102,4 +102,13 @@ bool directory_read_eos(unsigned char dev, unsigned char *buf, unsigned short le
  */
 void directory_filename(DirectoryEntry *d, char *fn, char *ft);
 
+/**
+ * @brief Return label of EOS filesystem  in device dev
+ * @param dev the AdamNet device to read
+ * @param label pointer to 13 character buffer for label
+ */
+bool directory_label(unsigned char dev,char *label);
+
+unsigned long eos_volume_free(unsigned char dev);
+
 #endif /* EOS_FILESYSTEM_H */

@@ -11,6 +11,8 @@
 #include <string.h>
 #include <conio.h>
 #include "eos_filesystem.h"
+#include "buffer.h"
+#include "globals.h"
 
 bool volume_is_eos_filesystem(unsigned char dev)
 {
@@ -62,9 +64,9 @@ bool entry_is_locked(DirectoryEntry *d)
 
 bool directory_read_eos(unsigned char dev, unsigned char *buf, unsigned short len, unsigned char *err, unsigned short *rlen)
 {
-  unsigned char f; // fileno
+  unsigned char f=0; // fileno
   
-  if (!eos_open_file(0x05,"DIRECTORY\x03",1,&f))
+  if (!eos_open_file(dev,"DIRECTORY\x03",1,&f))
     {
       *err = f;
       return false;
@@ -90,4 +92,48 @@ void directory_filename(DirectoryEntry *d, char *fn, char *ft)
 	  break;
 	}
     }
+}
+
+bool directory_label(unsigned char dev,char *label)
+{
+  unsigned char err=0;
+  unsigned short rlen=0;
+  unsigned char f=0;
+  DirectoryEntry *d = (DirectoryEntry *)buffer;
+  char *p = NULL;
+  
+  if (!eos_open_file(dev,"DIRECTORY\x03",1,&f))
+    return false;
+
+  rlen = eos_read_file(f,BUFFER_SIZE,buffer,err);
+
+  p = &d->filename[0];
+  
+  while (*p != 0x03)
+    *label++ = *p++;
+
+  return true;
+}
+
+unsigned long eos_volume_free(unsigned char dev)
+{
+  /* unsigned char err=0; */
+  /* unsigned short rlen=0; */
+  /* unsigned char f=0; */
+  /* DirectoryEntry *d = (DirectoryEntry *)buffer; */
+
+  /* if (!eos_open_file(dev,"DIRECTORY\x03",1,&f)) */
+  /*   return 0UL; */
+
+  /* rlen = eos_read_file(f,BUFFER_SIZE,buffer,err); */
+  
+  /* if ((d->attributes&0x01)==0x01) */
+  /*   { */
+  /*     cprintf("FILE: %c start block %lu\n",d->filename[0],d->start_block); */
+  /*     while(1); */
+  /*     return current_size - d->start_block; */
+  /*   } */
+  /* else */
+  /*   d++; */
+  return 100;
 }

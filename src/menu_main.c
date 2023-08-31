@@ -18,10 +18,7 @@ void menu_main(void)
 {
   char tmp[48];
 
-  current_size=160;
-  current_free=20;
-  
-  snprintf(tmp,sizeof(tmp),"   DEVICE %02u\n   %4uK SIZE\n   %4uK FREE",current_device,current_size,current_free);
+  snprintf(tmp,sizeof(tmp),"   DEVICE %02u\n   %4uK SIZE\n   %4luK FREE",current_device,current_size,current_free);
   smartkeys_display(NULL,NULL,NULL,"  FILE\n FUNCS"," DRIVE\n FUNCS","  CHANGE\n  DRIVE");
   smartkeys_status(tmp);
 

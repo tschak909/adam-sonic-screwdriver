@@ -12,8 +12,10 @@ char current_device=5;
 FileSystem current_filesystem=UNKNOWN_FILESYSTEM;
 char current_page=0;
 unsigned short current_size=0;
-unsigned short current_free=0;
+unsigned long
+current_free=0;
 unsigned short current_entry=0;
+unsigned long current_block=0UL;
 unsigned char selected_files_indexes[256];
 unsigned char selected_files=0;
 short entries_to_slots[32];

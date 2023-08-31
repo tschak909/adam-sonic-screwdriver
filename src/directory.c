@@ -252,5 +252,5 @@ void directory(void)
       break;
     }
 
-  state=MENU_FILE;
+  state=MENU_MAIN;
 }
