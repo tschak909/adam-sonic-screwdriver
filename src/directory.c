@@ -110,6 +110,18 @@ void directory_bkg(void)
   RLEUnpack(0x2000,directory_colors,MODE2_MAX);
 }
 
+void directory_bkg_remove_bluelines(void)
+{
+  msx_vfill(MODE2_ATTR+0x0300+32,0x1F,200);
+  msx_vfill(MODE2_ATTR+0x0500+32,0x1F,200);
+  msx_vfill(MODE2_ATTR+0x0700+32,0x1F,200);
+  msx_vfill(MODE2_ATTR+0x0900+32,0x1F,200);
+  msx_vfill(MODE2_ATTR+0x0B00+32,0x1F,200);
+  msx_vfill(MODE2_ATTR+0x0D00+32,0x1F,200);
+  msx_vfill(MODE2_ATTR+0x0F00+32,0x1F,200);
+  msx_vfill(MODE2_ATTR+0x1100+32,0x1F,200);
+}
+
 // Print entry into slot on screen at pos
 
 void directory_display_entry(char *s, unsigned char pos)
@@ -126,6 +138,14 @@ void directory_display_entry(char *s, unsigned char pos)
   cputs(s);
 }
 
+// clear entries to slots
+
+void directory_clear_entries_to_slots(void)
+{
+  for (unsigned char i=0;i<32; i++)
+    entries_to_slots[i]=-1;
+}
+
 // Display current directory page in Directory (EOS)
 
 void directory_display_eos(void)
@@ -133,7 +153,7 @@ void directory_display_eos(void)
   unsigned short rlen=0;
   unsigned char err=0, r=0;
   DirectoryEntry *d = (DirectoryEntry *)buffer;
-  unsigned char i=1, pos=0;
+  unsigned char i=1, slot=0;
   char vn[12]={0,0,0,0,0,0,0,0,0,0,0,0};
   char vt;
   
@@ -168,8 +188,9 @@ void directory_display_eos(void)
 	  char fn[12]={0,0,0,0,0,0,0,0,0,0,0,0};
 	  char ft;
 	  directory_filename(d[i],fn,&ft);
-	  directory_display_entry(fn,pos);	  
-	  pos++;
+	  directory_display_entry(fn,slot);
+	  entries_to_slots[slot]=i;
+	  slot++;
 	  i++;
 	}
     }  
@@ -230,4 +251,6 @@ void directory(void)
       directory_display_cpm();
       break;
     }
+
+  state=MENU_FILE;
 }

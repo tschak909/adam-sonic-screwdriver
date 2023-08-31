@@ -45,6 +45,7 @@ void menu_file(void)
 	case 0x85:
 	  break;
 	case 0x86:
+	  state=PROPERTIES;
 	  break;
 	}
     }

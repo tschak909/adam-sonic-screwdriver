@@ -18,13 +18,15 @@
 #include "globals.h"
 #include "menu_main.h"
 #include "menu_file.h"
+#include "properties.h"
 
-State state=MENU_MAIN;
+State state=SCAN;
 
 void main(void)
 {
   // Set current device to boot device
-  current_device = (*(unsigned char *)0xFD6F);
+  //current_device = (*(unsigned char *)0xFD6F);
+  current_device=0x05;
 
   smartkeys_sound_init();
   
@@ -52,6 +54,9 @@ void main(void)
 	  break;
 	case HEX_VIEW:
 	  hex_view();
+	  break;
+	case PROPERTIES:
+	  properties();
 	  break;
 	case HALT:
 	  halt();

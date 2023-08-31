@@ -3,14 +3,12 @@
  * @author  Thomas Cherryhomes
  * @email   thom dot cherryhomes at gmail dot com
  * @license gpl v. 3, see LICENSE for details.
- * @verbose Directory display
+ * @verbose Properties for file
  */
 
-#ifndef DIRECTORY_H
-#define DIRECTORY_H
+#ifndef PROPERTIES_H
+#define PROPERTIES_H
 
-void directory_bkg(void);
-void directory_bkg_remove_bluelines(void);
-void directory(void);
+void properties(void);
 
-#endif /* DIRECTORY_H */
+#endif /* PROPERTIES_H */

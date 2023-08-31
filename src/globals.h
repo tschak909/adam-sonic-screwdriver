@@ -23,8 +23,10 @@ extern char current_device;
 extern char current_page;
 extern unsigned short current_size;
 extern unsigned short current_free;
+extern unsigned short current_entry;
 extern State state;
 extern unsigned char selected_files_indexes[256];
 extern unsigned char selected_files;
+extern short entries_to_slots[32];
 
 #endif /* GLOBALS_H */
