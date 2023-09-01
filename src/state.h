@@ -21,6 +21,7 @@ typedef enum _state
     MENU_DRIVE,
     PROPERTIES,
     MENU_PROPERTIES,
+    EDIT_PROPERTY,
     VOLUME_MAP,
     MENU_MAP,
     HALT

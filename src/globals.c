@@ -21,3 +21,4 @@ unsigned char selected_files_indexes[256];
 unsigned char selected_files=0;
 short entries_to_slots[32];
 bool wildcard_mode=false;
+PropertiesField propertiesField=PROPERTIES_DATE;
