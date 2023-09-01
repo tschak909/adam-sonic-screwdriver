@@ -18,8 +18,10 @@ typedef enum _state
     HEX_VIEW,
     MENU_MAIN,
     MENU_FILE,
+    MENU_DRIVE,
     PROPERTIES,
     VOLUME_MAP,
+    MENU_MAP,
     HALT
   } State;
 

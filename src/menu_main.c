@@ -32,6 +32,7 @@ void menu_main(void)
 	  state=MENU_FILE;
 	  break;
 	case 0x85:
+	  state=MENU_DRIVE;
 	  break;
 	case 0x86:
 	  state=SELECT_DRIVE;

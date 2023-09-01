@@ -114,6 +114,7 @@ void scan(void)
 {
   while (state==SCAN)
     {
+      eos_scan_for_devices();
       if (!valid_diskette())
 	invalid_diskette();
       else

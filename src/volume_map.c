@@ -19,6 +19,7 @@
 #include "directory.h"
 #include "buffer.h"
 #include "eos_filesystem.h"
+#include "cursor.h"
 
 #define MAP_X_START 3
 #define MAP_Y_START 5
@@ -81,6 +82,8 @@ void volume_map(void)
   unsigned char r=0;
   unsigned short num_visible_blocks=0;
   char label[13] = {0,0,0,0,0,0,0,0,0,0,0,0,0};
+
+  selector(false);
   
   directory_bkg();
   directory_bkg_remove_bluelines();
@@ -135,6 +138,10 @@ void volume_map(void)
   
   while (y<MAP_Y_MAX)
     {
+      char k=0;
+      
+      eos_start_read_keyboard();
+
       gotoxy(x++,y);
 
       // Read block into buffer
@@ -161,8 +168,13 @@ void volume_map(void)
 	  y++;
 	}
 
+      k=eos_end_read_keyboard();
+
+      if (k==0x86) // We asked for abort
+	break;
+      
       current_block++;
     }
-  
-  state=HALT;
+
+  state=MENU_MAP;
 }

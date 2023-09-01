@@ -38,6 +38,8 @@ void menu_file(void)
     {
       switch(input())
 	{
+	case 0x1b:
+	  state=MENU_MAIN;
 	case 0x83:
 	  break;
 	case 0x84:

@@ -18,6 +18,7 @@
 #include "buffer.h"
 #include "globals.h"
 #include "input.h"
+#include "cursor.h"
 
 // RLE encoded pixel data to go to VDP address 0x0000
 static const unsigned char directory_pixels[] = {
@@ -193,7 +194,10 @@ void directory_display_eos(void)
 	  slot++;
 	  i++;
 	}
-    }  
+    }
+  selector(true);
+  selector_pos(3,3);
+  
 }
 
 void directory_display_cpm(void)

@@ -18,8 +18,10 @@
 #include "globals.h"
 #include "menu_main.h"
 #include "menu_file.h"
+#include "menu_drive.h"
 #include "properties.h"
 #include "volume_map.h"
+#include "menu_map.h"
 
 State state=SCAN;
 
@@ -52,6 +54,9 @@ void main(void)
 	case MENU_FILE:
 	  menu_file();
 	  break;
+	case MENU_DRIVE:
+	  menu_drive();
+	  break;
 	case HEX_VIEW:
 	  hex_view();
 	  break;
@@ -60,6 +65,9 @@ void main(void)
 	  break;
 	case VOLUME_MAP:
 	  volume_map();
+	  break;
+	case MENU_MAP:
+	  menu_map();
 	  break;
 	case HALT:
 	  halt();
