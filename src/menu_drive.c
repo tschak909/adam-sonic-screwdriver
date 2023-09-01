@@ -44,6 +44,10 @@ void menu_drive(void)
 	  break;
 	case 0x86:
 	  break;
+	case 0x90:
+	  wildcard_mode=!wildcard_mode;
+	  state=DIRECTORY;
+	  break;
 	default:
 	  // handle_navigation_keys();
 	  break;

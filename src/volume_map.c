@@ -40,7 +40,8 @@ static unsigned char directory_blocks_remaining=0;
 void volume_map_eos_block_color(void)
 {
   unsigned char c=0;
-
+  unsigned short w=0;
+  
   if (current_block==0)
     return COLOR_BOOT;
 
@@ -64,7 +65,8 @@ void volume_map_eos_block_color(void)
     }
 
   c=buffer[0];
-  
+  w=(unsigned short *)buffer[0];
+    
   for (unsigned short i=0;i<1024;i++)
     {
       if (buffer[i] != c)

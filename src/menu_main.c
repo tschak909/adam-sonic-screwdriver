@@ -14,6 +14,7 @@
 #include "state.h"
 #include "globals.h"
 
+
 void menu_main(void)
 {
   char tmp[48];
@@ -37,8 +38,11 @@ void menu_main(void)
 	case 0x86:
 	  state=SELECT_DRIVE;
 	  break;
+	case 0x90:
+	  wildcard_mode=!wildcard_mode;
+	  state=DIRECTORY;
+	  break;
 	default:
-	  // handle_navigation_keys();
 	  break;
 	}
     }

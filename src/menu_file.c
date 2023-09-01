@@ -49,6 +49,9 @@ void menu_file(void)
 	case 0x86:
 	  state=PROPERTIES;
 	  break;
+	case 0x90:
+	  wildcard_mode=!wildcard_mode;
+	  break;
 	}
     }
   

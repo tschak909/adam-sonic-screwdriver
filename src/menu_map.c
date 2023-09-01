@@ -44,6 +44,9 @@ void menu_map(void)
 	  break;
 	case 0x86:
 	  break;
+	case 0x90:
+	  wildcard_mode=!wildcard_mode;
+	  break;
 	default:
 	  // handle_navigation_keys();
 	  break;

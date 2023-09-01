@@ -9,6 +9,7 @@
 #ifndef GLOBALS_H
 #define GLOBALS_H
 
+#include <stdbool.h>
 #include "state.h"
 
 typedef enum _filesystem
@@ -29,5 +30,6 @@ extern State state;
 extern unsigned char selected_files_indexes[256];
 extern unsigned char selected_files;
 extern short entries_to_slots[32];
+extern bool wildcard_mode;
 
 #endif /* GLOBALS_H */

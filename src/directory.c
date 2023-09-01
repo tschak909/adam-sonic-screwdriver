@@ -169,31 +169,32 @@ void directory_display_eos(void)
   // Populate file directory, ignoring locked, system, and deleted files
   while (!entry_is_blocks_left(d[i]))
     {
-      if (entry_is_locked(d[i]))
+      if (!wildcard_mode)
 	{
-	  i++;
-	  continue;
+	  if (entry_is_locked(d[i]))
+	    {
+	      i++;
+	      continue;
+	    }
+	  else if (entry_is_system_file(d[i]))
+	    {
+	      i++;
+	      continue;
+	    }
+	  else if (entry_is_deleted(d[i]))
+	    {
+	      i++;
+	      continue;
+	    }
 	}
-      else if (entry_is_system_file(d[i]))
-	{
-	  i++;
-	  continue;
-	}
-      else if (entry_is_deleted(d[i]))
-	{
-	  i++;
-	  continue;
-	}
-      else
-	{
-	  char fn[12]={0,0,0,0,0,0,0,0,0,0,0,0};
-	  char ft;
-	  directory_filename(d[i],fn,&ft);
-	  directory_display_entry(fn,slot);
-	  entries_to_slots[slot]=i;
-	  slot++;
-	  i++;
-	}
+
+      char fn[12]={0,0,0,0,0,0,0,0,0,0,0,0};
+      char ft;
+      directory_filename(d[i],fn,&ft);
+      directory_display_entry(fn,slot);
+      entries_to_slots[slot]=i;
+      slot++;
+      i++;
     }
   selector(true);
   selector_pos(3,3);
@@ -245,6 +246,7 @@ void directory_display_cpm(void)
 void directory(void)
 {
   directory_bkg();
+  buffer_fill(0x00);
   
   switch (current_filesystem)
     {
