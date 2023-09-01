@@ -24,6 +24,7 @@ typedef enum _state
     EDIT_PROPERTY,
     VOLUME_MAP,
     MENU_MAP,
+    TEST_HARNESS,
     HALT
   } State;
 

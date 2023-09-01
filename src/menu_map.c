@@ -22,7 +22,7 @@ void menu_map(void)
   /* smartkeys_display(NULL,NULL,NULL,"  FILE\n FUNCS"," DRIVE\n FUNCS","  CHANGE\n  DRIVE"); */
   /* smartkeys_status(tmp); */
 
-  smartkeys_display(NULL,NULL,NULL," SELECT\n DRIVE","  PREV\n  PAGE","   NEXT\n   PAGE");
+  smartkeys_display(NULL,NULL," SELECT\n DRIVE","  PREV\n  PAGE","   NEXT\n   PAGE",NULL);
   snprintf(tmp,sizeof(tmp),"   VOLUME MAP\n   FOR DEVICE %02x",current_device);
   smartkeys_status(tmp);
   

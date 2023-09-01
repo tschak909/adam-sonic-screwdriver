@@ -26,6 +26,7 @@
 
 #define MAP_X_MAX 28
 #define MAP_Y_MAX 15
+#define BLOCKS_PER_PAGE 260
 
 #define COLOR_UNKNOWN 15
 #define COLOR_BOOT 4
@@ -76,6 +77,16 @@ void volume_map_eos_block_color(void)
   return COLOR_EMPTY;
 }
 
+unsigned long volume_map_page_block_begin(void)
+{
+  return BLOCKS_PER_PAGE * volume_map_page;
+}  
+
+unsigned long volume_map_page_block_end(void)
+{
+  return current_size - volume_map_page * BLOCKS_PER_PAGE;
+}
+
 void volume_map(void)
 {
   char tmp[80];
@@ -90,14 +101,17 @@ void volume_map(void)
   directory_bkg();
   directory_bkg_remove_bluelines();
 
-  // print legend
-
-  gotoxy(16,3);
-  msx_color(1,COLOR_DATA,7);
-  putch(' ');
+  // print map range
+  gotoxy(6,3);
+  cprintf("BLOCKS ");
+  msx_color(1,7,7);
+  cprintf("%6lu",volume_map_page_block_begin());
   msx_color(1,15,7);
-  cprintf(" = 1 BLOCK");
+  cprintf(" TO ");
+  msx_color(1,7,7);
+  cprintf("%6lu",volume_map_page_block_end());
   
+  // print legend  
   gotoxy(6,16);
   msx_color(1,COLOR_BOOT,7);
   putch(' ');
@@ -132,8 +146,8 @@ void volume_map(void)
   msx_color(1,15,7);
   cprintf("%s",label);
   
-  snprintf(tmp,sizeof(tmp),"   READING VOLUME MAP FROM DEVICE %02x\n   PLEASE WAIT.",current_device);
-  smartkeys_display(NULL,NULL,NULL,NULL,NULL,"  ABORT");
+  snprintf(tmp,sizeof(tmp),"   READING VOLUME MAP\n   FROM DEVICE %02x\n   PLEASE WAIT.",current_device);
+  smartkeys_display(NULL,NULL,NULL,"  PAGE\n  UP","  PAGE\n  DOWN","  ABORT");
   smartkeys_status(tmp);
 
   current_block=0UL;

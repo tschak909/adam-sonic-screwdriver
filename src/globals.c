@@ -22,3 +22,4 @@ unsigned char selected_files=0;
 short entries_to_slots[32];
 bool wildcard_mode=false;
 PropertiesField propertiesField=PROPERTIES_DATE;
+unsigned char volume_map_page=0;

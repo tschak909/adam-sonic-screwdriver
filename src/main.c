@@ -23,6 +23,7 @@
 #include "volume_map.h"
 #include "menu_map.h"
 #include "menu_properties.h"
+#include "test_harness.h"
 
 State state=SCAN;
 
@@ -72,6 +73,9 @@ void main(void)
 	  break;
 	case MENU_MAP:
 	  menu_map();
+	  break;
+	case TEST_HARNESS:
+	  test_harness();
 	  break;
 	case HALT:
 	  halt();
