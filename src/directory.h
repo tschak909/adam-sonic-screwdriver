@@ -9,6 +9,10 @@
 #ifndef DIRECTORY_H
 #define DIRECTORY_H
 
+void directory_up(void);
+void directory_right(void);
+void directory_down(void);
+void directory_left(void);
 void directory_bkg(void);
 void directory_bkg_remove_bluelines(void);
 void directory(void);

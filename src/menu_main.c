@@ -13,7 +13,7 @@
 #include "input.h"
 #include "state.h"
 #include "globals.h"
-
+#include "directory.h"
 
 void menu_main(void)
 {
@@ -41,6 +41,18 @@ void menu_main(void)
 	case 0x90:
 	  wildcard_mode=!wildcard_mode;
 	  state=DIRECTORY;
+	  break;
+	case 0xA0:
+	  directory_up();
+	  break;
+	case 0xA1:
+	  directory_right();
+	  break;
+	case 0xA2:
+	  directory_down();
+	  break;
+	case 0xA3:
+	  directory_left();
 	  break;
 	default:
 	  break;

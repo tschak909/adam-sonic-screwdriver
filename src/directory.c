@@ -147,6 +147,66 @@ void directory_clear_entries_to_slots(void)
     entries_to_slots[i]=-1;
 }
 
+void directory_update_cursor(unsigned char pos)
+{
+  int r = pos >> 1;
+  int c = pos % 2;
+  int y = r + 3;
+  int x = c ? 16 : 3;
+
+  selector(1);
+  selector_pos(x,y);
+}
+
+// Move directory cursor on screen
+
+void directory_up(void)
+{
+  if (current_pos)
+    current_pos -= 2;
+
+  if (current_pos<0)
+    current_pos = 0;
+
+  directory_update_cursor(current_pos);
+}
+
+void directory_right(void)
+{
+  if (!(current_pos % 2))
+    current_pos++;
+
+  if (entries_to_slots[current_pos]<0)
+    current_pos--;
+  
+  directory_update_cursor(current_pos);
+}
+
+void directory_down(void)
+{
+  int p=current_pos+2;
+  
+  if (p<0)
+    return;
+  else if (p>29)
+    return;
+
+  if (entries_to_slots[p]<0)
+    return;
+  else
+    current_pos = p;
+
+  directory_update_cursor(current_pos);
+}
+
+void directory_left(void)
+{
+  if ((current_pos % 2))
+    current_pos--;
+
+  directory_update_cursor(current_pos);
+}
+
 // Display current directory page in Directory (EOS)
 
 void directory_display_eos(void)
@@ -247,6 +307,7 @@ void directory(void)
 {
   directory_bkg();
   buffer_fill(0x00);
+  directory_clear_entries_to_slots();
   
   switch (current_filesystem)
     {

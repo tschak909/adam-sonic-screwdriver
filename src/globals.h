@@ -26,6 +26,7 @@ extern unsigned short current_size;
 extern unsigned long current_free;
 extern unsigned short current_entry;
 extern unsigned long current_block;
+extern int current_pos;
 extern State state;
 extern unsigned char selected_files_indexes[256];
 extern unsigned char selected_files;
