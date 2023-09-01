@@ -256,9 +256,8 @@ void directory_display_eos(void)
       slot++;
       i++;
     }
-  selector(true);
-  selector_pos(3,3);
-  
+
+  directory_update_cursor(current_pos);
 }
 
 void directory_display_cpm(void)

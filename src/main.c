@@ -22,6 +22,7 @@
 #include "properties.h"
 #include "volume_map.h"
 #include "menu_map.h"
+#include "menu_properties.h"
 
 State state=SCAN;
 
@@ -62,6 +63,9 @@ void main(void)
 	  break;
 	case PROPERTIES:
 	  properties();
+	  break;
+	case MENU_PROPERTIES:
+	  menu_properties();
 	  break;
 	case VOLUME_MAP:
 	  volume_map();

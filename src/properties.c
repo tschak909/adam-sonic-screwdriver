@@ -19,6 +19,7 @@
 #include "directory.h"
 #include "buffer.h"
 #include "eos_filesystem.h"
+#include "cursor.h"
 
 const char *properties_month(unsigned char m)
 {
@@ -69,12 +70,12 @@ void properties(void)
   DirectoryEntry *d = (DirectoryEntry *)buffer;
   char fn[12]={0,0,0,0,0,0,0,0,0,0,0,0};
   char ft=0;
+
+  selector(false);
   
   directory_bkg();
   directory_bkg_remove_bluelines();
 
-  current_entry = entries_to_slots[0];
-  
   // Put selected filename in tab
   msx_color(1,15,7);
   directory_filename(d[current_entry],fn,&ft);
@@ -85,6 +86,7 @@ void properties(void)
   gotoxy(17,1);
   msx_color(1,7,7);
   cprintf("%8lu bytes",properties_filesize(d[current_entry]));
+
   // Date
   gotoxy(16,3);
   msx_color(1,15,7);
@@ -169,9 +171,7 @@ void properties(void)
   msx_color(1,7,7);
   cprintf("%6s",properties_yesno(d[current_entry].attributes & 0x01));
 
-  smartkeys_display(NULL,NULL,"  VIEW\n  HEX","  VIEW\n  TEXT"," RENAME","  \x1f""EDIT\n\x1f\x1f\x1fMETADATA");
-  smartkeys_status(" FILE PROPERTIES\n SELECT OPERATION\n OR ESCAPE.");
-  state=HALT;
+  state=MENU_PROPERTIES;
 
 }
 

@@ -12,7 +12,7 @@
 void cursor(bool t);
 void cursor_pos(unsigned char x, unsigned char y);
 
-void selector(bool t);
+void selector(unsigned char t);
 void selector_pos(unsigned char x, unsigned char y);
 
 

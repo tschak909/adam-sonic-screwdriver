@@ -29,6 +29,10 @@ void menu_main(void)
     {
       switch(input())
 	{
+	case 0x0d:
+	  current_entry=entries_to_slots[current_pos];
+	  state=PROPERTIES;
+	  break;
 	case 0x84:
 	  state=MENU_FILE;
 	  break;
