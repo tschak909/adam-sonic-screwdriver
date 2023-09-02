@@ -112,6 +112,7 @@ void invalid_diskette(void)
 
 void scan(void)
 {
+  cprintf("THIS UTILITY IS\nUNDER CONSTRUCTION");
   while (state==SCAN)
     {
       eos_scan_for_devices();
