@@ -67,7 +67,13 @@ void scan_block_size(void)
 
 bool valid_diskette(void)
 {
+  char tmp[40];
+  
   current_filesystem=UNKNOWN_FILESYSTEM;
+
+  smartkeys_display(NULL,NULL,NULL,NULL,NULL,NULL);
+  snprintf(tmp,40,"   SCANNING DEVICE %02x\n   PLEASE WAIT",current_device);
+  smartkeys_status(tmp);
   
   if (volume_is_eos_filesystem(current_device))
     {
@@ -122,11 +128,5 @@ void scan(void)
 	invalid_diskette();
       else
 	state=DIRECTORY;
-
-      dcb = eos_find_dcb(current_device);
-      dcb->block=0;
-      dcb->status=2;
-      while (dcb->status<0x80);
-      eos_request_status(current_device,dcb);
     }
 }
