@@ -23,6 +23,7 @@ typedef enum _state
     MENU_PROPERTIES,
     EDIT_PROPERTY,
     VOLUME_MAP,
+    VOLUME_MAP_BAD_BLOCKS,
     MENU_MAP,
     TEST_HARNESS,
     HALT

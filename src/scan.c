@@ -112,13 +112,21 @@ void invalid_diskette(void)
 
 void scan(void)
 {
-  cprintf("THIS UTILITY IS\nUNDER CONSTRUCTION");
   while (state==SCAN)
     {
+      DCB *dcb = NULL;
+
       eos_scan_for_devices();
+      
       if (!valid_diskette())
 	invalid_diskette();
       else
 	state=DIRECTORY;
+
+      dcb = eos_find_dcb(current_device);
+      dcb->block=0;
+      dcb->status=2;
+      while (dcb->status<0x80);
+      eos_request_status(current_device,dcb);
     }
 }

@@ -71,6 +71,9 @@ void main(void)
 	case VOLUME_MAP:
 	  volume_map();
 	  break;
+	case VOLUME_MAP_BAD_BLOCKS:
+	  volume_map_bad_blocks();
+	  break;
 	case MENU_MAP:
 	  menu_map();
 	  break;

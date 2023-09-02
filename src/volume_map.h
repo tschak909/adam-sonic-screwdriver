@@ -10,5 +10,6 @@
 #define VOLUME_MAP_H
 
 void volume_map(void);
+void volume_map_bad_blocks(void);
 
 #endif /* VOLUME_MAP_H */

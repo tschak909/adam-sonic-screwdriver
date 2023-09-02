@@ -63,6 +63,40 @@ void volume_map_plot(unsigned long block, unsigned char color, char c)
   putch(c);
 }
 
+void volume_map_cursor(unsigned long block)
+{
+  unsigned char y=(block/26)+MAP_Y_START;
+  unsigned char x=(block%26)+MAP_X_START;
+
+  if (block>BLOCKS_PER_PAGE)
+    return;
+
+  cursor(true);
+  cursor_pos(x,y);
+}
+
+void volume_map_bad_blocks(void)
+{
+  DCB *dcb = eos_find_dcb(current_device);
+  unsigned short blocks_to_scan=(current_size < BLOCKS_PER_PAGE ? current_size : BLOCKS_PER_PAGE);
+  
+  smartkeys_display(NULL,NULL,NULL,NULL,NULL,"   ABORT");
+  smartkeys_status("   SCANNING FOR BAD BLOCKS...");
+
+  for (unsigned long i=0;i<blocks_to_scan;i++)
+    {
+      eos_start_read_keyboard();
+      volume_map_cursor(i);
+      if (eos_read_block(current_device,i,buffer)==0x16) // media error
+	volume_map_plot(i,COLOR_BAD,' ');
+
+      if (eos_end_read_keyboard() == 0x86)
+	break;
+    }
+
+  state=MENU_MAP;
+}
+
 void volume_map(void)
 {
   char tmp[80];

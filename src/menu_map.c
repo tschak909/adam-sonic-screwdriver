@@ -22,7 +22,7 @@ void menu_map(void)
   /* smartkeys_display(NULL,NULL,NULL,"  FILE\n FUNCS"," DRIVE\n FUNCS","  CHANGE\n  DRIVE"); */
   /* smartkeys_status(tmp); */
 
-  smartkeys_display(NULL,NULL," SELECT\n DRIVE","  PREV\n  PAGE","   NEXT\n   PAGE",NULL);
+  smartkeys_display(NULL,NULL," SELECT\n DRIVE","  PREV\n  PAGE","   NEXT\n   PAGE","BAD BLOCK\n   MAP");
   snprintf(tmp,sizeof(tmp),"   VOLUME MAP\n   FOR DEVICE %02x",current_device);
   smartkeys_status(tmp);
   
@@ -43,6 +43,7 @@ void menu_map(void)
 	case 0x85:
 	  break;
 	case 0x86:
+	  state=VOLUME_MAP_BAD_BLOCKS;
 	  break;
 	case 0x90:
 	  wildcard_mode=!wildcard_mode;
