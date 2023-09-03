@@ -27,7 +27,7 @@ void format_make_filesystem(void)
 
   buffer_fill(0x00); // Fill block with zeroes, so EOS MAKE DIRECTORY is happy
   
-  for (unsigned long block=0; block<13; block++)
+  for (unsigned long block=1; block<13; block++) // skip block 0, because we wrote a boot record there.
     {
       if (eos_write_block(current_device,block,buffer) == 0x16)
 	{
