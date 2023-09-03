@@ -22,12 +22,6 @@ static unsigned char keypad_copy=0;
 static unsigned char repeat=0;
 static int entry_timer=0;
 
-
-static void input_clear_bottom(void)
-{
-  msx_vfill(0x1200,0x00,768);
-}
-
 /**
  * Get input from keyboard/joystick
  * @return keycode (or synthesized keycode if joystick)
@@ -127,7 +121,6 @@ void input_line(unsigned char x, unsigned char y, unsigned char o, char *c, unsi
     *keyVI = false;
   
   cursor(true);
-  input_clear_bottom();
 
   gotoxy(x,y);
   cursor_pos(x,y);

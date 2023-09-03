@@ -15,30 +15,44 @@
 #include "globals.h"
 #include "directory.h"
 
-void menu_format_type(void)
+void menu_format_type_num_blocks(void)
 {
   char tmp[48];
 
-  snprintf(tmp,sizeof(tmp),"   DEVICE %02u\n   SELECT FILESYSTEM TYPE\n   FOR THIS DISK",current_device);
-  smartkeys_display(NULL,NULL,NULL,NULL,"  CP/M","  EOS");
-  smartkeys_status(tmp);
+  smartkeys_display("33\nBLOCKS","77\nBLOCKS","116\nBLOCKS","155\nBLOCKS","194\nBLOCKS","233\nBLOCKS");
 
   eos_start_read_keyboard();
   
-  while (state==MENU_FORMAT_TYPE)
+  while (state==MENU_FORMAT_TYPE_NUM_BLOCKS)
     {
       switch(input())
 	{
 	case 0x1B:
 	  state=MENU_DRIVE;
 	  break;
+	case 0x81:
+	  current_dirsize=1;
+	  state=FORMAT_LABEL;
+	  break;
+	case 0x82:
+	  current_dirsize=2;
+	  state=FORMAT_LABEL;
+	  break;
+	case 0x83:
+	  current_dirsize=3;
+	  state=FORMAT_LABEL;
+	  break;
+	case 0x84:
+	  current_dirsize=4;
+	  state=FORMAT_LABEL;
+	  break;
 	case 0x85:
-	  current_filesystem=CPM;
-	  state=MENU_DRIVE;
+	  current_dirsize=5;
+	  state=FORMAT_LABEL;
 	  break;
 	case 0x86:
-	  current_filesystem=EOS;
-	  state=MENU_FORMAT_TYPE_NUM_BLOCKS;
+	  current_dirsize=6;
+	  state=FORMAT_LABEL;
 	  break;
 	default:
 	  break;

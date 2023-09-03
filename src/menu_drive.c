@@ -41,6 +41,7 @@ void menu_drive(void)
 	case 0x84:
 	  break;
 	case 0x85:
+	  state=FORMAT_CONFIRM;
 	  break;
 	case 0x86:
 	  state=RETENSION;

@@ -25,8 +25,13 @@
 #include "menu_properties.h"
 #include "retension.h"
 #include "menu_format_type.h"
+#include "menu_format_type_num_blocks.h"
+#include "format_label.h"
 #include "format_confirm.h"
 #include "format.h"
+#include "format_error.h"
+#include "format_make_filesystem.h"
+#include "format_make_filesystem_error.h"
 #include "check_for_bad_blocks.h"
 #include "check_for_bad_blocks_retry.h"
 #include "test_harness.h"
@@ -86,6 +91,9 @@ void main(void)
 	case RETENSION:
 	  retension();
 	  break;
+	case FORMAT_LABEL:
+	  format_label();
+	  break;
 	case FORMAT_CONFIRM:
 	  format_confirm();
 	  break;
@@ -103,6 +111,15 @@ void main(void)
 	  break;
 	case MENU_FORMAT_TYPE:
 	  menu_format_type();
+	  break;
+	case MENU_FORMAT_TYPE_NUM_BLOCKS:
+	  menu_format_type_num_blocks();
+	  break;
+	case FORMAT_MAKE_FILESYSTEM:
+	  format_make_filesystem();
+	  break;
+	case FORMAT_MAKE_FILESYSTEM_ERROR:
+	  format_make_filesystem_error();
 	  break;
 	case TEST_HARNESS:
 	  test_harness();

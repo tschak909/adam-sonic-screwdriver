@@ -45,6 +45,8 @@ extern unsigned long current_free;
 extern unsigned short current_entry;
 extern unsigned long current_block;
 extern int current_pos;
+extern unsigned char current_dirsize;
+extern unsigned char current_label[13];
 extern unsigned char properties_pos;
 extern PropertiesField propertiesField;
 extern State state;

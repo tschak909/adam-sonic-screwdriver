@@ -16,6 +16,8 @@ unsigned long current_free=0;
 unsigned short current_entry=0;
 unsigned long current_block=0UL;
 int current_pos=0;
+unsigned char current_dirsize=0;
+unsigned char current_label[13]={0,0,0,0,0,0,0,0,0,0,0,0,0};
 unsigned char properties_pos=0;
 unsigned char selected_files_indexes[256];
 unsigned char selected_files=0;

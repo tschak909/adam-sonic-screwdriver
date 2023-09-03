@@ -96,7 +96,7 @@ void invalid_diskette(void)
   char tmp[128];
   
   snprintf(tmp,sizeof(tmp),"  THE VOLUME IN DEVICE %2u\n  DOES NOT CONTAIN A VALID\n  EOS OR CP/M FILE SYSTEM.",current_device);
-  smartkeys_display(NULL,NULL,NULL,NULL," \x1f\x1fRETRY"," SELECT\n ANOTHER");
+  smartkeys_display(NULL,NULL,NULL," DRIVE\n FUNCS"," \x1f\x1fRETRY"," SELECT\n ANOTHER");
   smartkeys_status(tmp);
 
   eos_start_read_keyboard();
@@ -105,6 +105,9 @@ void invalid_diskette(void)
     {
       switch(input())
 	{
+	case 0x84:
+	  state=MENU_DRIVE;
+	  break;
 	case 0x85:
 	  return;
 	case 0x86:
