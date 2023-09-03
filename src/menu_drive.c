@@ -43,6 +43,7 @@ void menu_drive(void)
 	case 0x85:
 	  break;
 	case 0x86:
+	  state=RETENSION;
 	  break;
 	case 0x90:
 	  wildcard_mode=!wildcard_mode;
