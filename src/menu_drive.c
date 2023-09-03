@@ -22,7 +22,7 @@ void menu_drive(void)
   /* smartkeys_display(NULL,NULL,NULL,"  FILE\n FUNCS"," DRIVE\n FUNCS","  CHANGE\n  DRIVE"); */
   /* smartkeys_status(tmp); */
 
-  smartkeys_display(NULL,NULL,"  VIEW\n   MAP","  VIEW\n  HEX"," FORMAT","RETENSION");
+  smartkeys_display(NULL,NULL,"  VIEW\n   MAP","  BLOCK\n  COPY"," FORMAT","RETENSION");
   snprintf(tmp,sizeof(tmp),"   VOLUME\n   OPERATIONS\n   FOR DEVICE %02x",current_device);
   smartkeys_status(tmp);
   

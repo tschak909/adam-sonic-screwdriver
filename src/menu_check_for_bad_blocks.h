@@ -3,13 +3,12 @@
  * @author  Thomas Cherryhomes
  * @email   thom dot cherryhomes at gmail dot com
  * @license gpl v. 3, see LICENSE for details.
- * @verbose Scan for devices
+ * @verbose Format Type Menu
  */
 
-#ifndef SCAN_H
-#define SCAN_H
+#ifndef MENU_CHECK_FOR_BAD_BLOCKS_H
+#define MENU_CHECK_FOR_BAD_BLOCKS_H
 
-void scan_block_size(void);
-void scan(void);
+void menu_check_for_bad_blocks(void);
 
-#endif /* SCAN_H */
+#endif /* MENU_CHECK_FOR_BAD_BLOCKS_H */

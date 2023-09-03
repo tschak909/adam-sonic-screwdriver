@@ -26,6 +26,8 @@ void format(void)
 {
   char tmp[64];
 
+  directory_bkg();
+
   snprintf(tmp,sizeof(tmp),"   FORMATTING MEDIA\n   IN DRIVE %02x",current_device);
   smartkeys_display(NULL,NULL,NULL,NULL,NULL,NULL);
   smartkeys_status(tmp);
@@ -57,5 +59,5 @@ void format(void)
   eos_write_block(current_device,0x00UL,buffer);
 
   // Continue to selecting format type
-  state=MENU_FORMAT_TYPE;
+  state=MENU_CHECK_FOR_BAD_BLOCKS;
 }

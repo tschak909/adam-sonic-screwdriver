@@ -19,17 +19,20 @@
 #include "globals.h"
 #include "input.h"
 #include "cursor.h"
+#include "scan.h"
 
 void check_for_bad_blocks(void)
 {
-  unsigned long end_block=current_size;
+  scan_block_size();
 
   msx_color(1,15,7);
 
-  for (unsigned long i=0;i<end_block;i++)
+  for (unsigned long i=0;i<current_size;i++)
     {
-      gotoxy(3,18);
-      cprintf("CHECKING BLOCK %5u of %5u",i,end_block);
+      gotoxy(3,19);
+
+      cprintf("CHECKING %5lu of %5u",i,current_size-1);
+
       if (eos_read_block(current_device,i,buffer) == 0x16) // Media error.
 	{
 	  state=CHECK_FOR_BAD_BLOCKS_RETRY;
@@ -37,5 +40,5 @@ void check_for_bad_blocks(void)
 	}
     }
   
-  state=SCAN;
+  state=MENU_FORMAT_TYPE;
 }

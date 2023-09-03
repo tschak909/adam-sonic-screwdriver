@@ -32,6 +32,7 @@
 #include "format_error.h"
 #include "format_make_filesystem.h"
 #include "format_make_filesystem_error.h"
+#include "menu_check_for_bad_blocks.h"
 #include "check_for_bad_blocks.h"
 #include "check_for_bad_blocks_retry.h"
 #include "test_harness.h"
@@ -102,6 +103,9 @@ void main(void)
 	  break;
 	case FORMAT_ERROR:
 	  format_error();
+	  break;
+	case MENU_CHECK_FOR_BAD_BLOCKS:
+	  menu_check_for_bad_blocks();
 	  break;
 	case CHECK_FOR_BAD_BLOCKS:
 	  check_for_bad_blocks();
