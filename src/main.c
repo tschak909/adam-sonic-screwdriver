@@ -24,6 +24,11 @@
 #include "menu_map.h"
 #include "menu_properties.h"
 #include "retension.h"
+#include "menu_format_type.h"
+#include "format_confirm.h"
+#include "format.h"
+#include "check_for_bad_blocks.h"
+#include "check_for_bad_blocks_retry.h"
 #include "test_harness.h"
 
 State state=SCAN;
@@ -80,6 +85,24 @@ void main(void)
 	  break;
 	case RETENSION:
 	  retension();
+	  break;
+	case FORMAT_CONFIRM:
+	  format_confirm();
+	  break;
+	case FORMAT:
+	  format();
+	  break;
+	case FORMAT_ERROR:
+	  format_error();
+	  break;
+	case CHECK_FOR_BAD_BLOCKS:
+	  check_for_bad_blocks();
+	  break;
+	case CHECK_FOR_BAD_BLOCKS_RETRY:
+	  check_for_bad_blocks_retry();
+	  break;
+	case MENU_FORMAT_TYPE:
+	  menu_format_type();
 	  break;
 	case TEST_HARNESS:
 	  test_harness();
