@@ -75,6 +75,56 @@ void volume_map_cursor(unsigned long block)
   cursor_pos(x,y);
 }
 
+void volume_map_cursor_up(void)
+{
+  long new_block = current_block - 26;
+
+  if (new_block < 0)
+    new_block=0;
+
+  current_block = new_block;
+  volume_map_cursor(new_block);
+}
+
+void volume_map_cursor_right(void)
+{
+  long new_block = current_block+1;
+
+  if (new_block > (current_size-1))
+    new_block = current_size-1;
+
+  current_block = new_block;
+  volume_map_cursor(new_block);
+}
+
+void volume_map_cursor_down(void)
+{
+  long new_block = current_block + 26;
+
+  if (new_block > (current_size-1))
+    new_block = current_size-1;
+
+  current_block = new_block;
+  volume_map_cursor(new_block);
+}
+
+void volume_map_cursor_left(void)
+{
+  long new_block = current_block-1;
+
+  if (new_block < 0)
+    new_block=0;
+
+  current_block = new_block;
+  volume_map_cursor(new_block);
+}
+
+void volume_map_cursor_home(void)
+{
+  current_block=0;
+  volume_map_cursor(current_block);
+}
+
 void volume_map_bad_blocks(void)
 {
   DCB *dcb = eos_find_dcb(current_device);
@@ -244,6 +294,9 @@ void volume_map(void)
 
   // Plot BLOCKS LEFT Entry
   volume_map_plot(d->start_block,COLOR_LAST,' ');
+
+  current_block=0UL;
+  volume_map_cursor(current_block);
   
   state=MENU_MAP;
 }

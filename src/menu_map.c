@@ -13,6 +13,7 @@
 #include "input.h"
 #include "state.h"
 #include "globals.h"
+#include "volume_map.h"
 
 void menu_map(void)
 {
@@ -35,6 +36,9 @@ void menu_map(void)
 	case 0x1B:
 	  state=DIRECTORY;
 	  break;
+	case 0x80:
+	  volume_map_cursor_home();
+	  break;
 	case 0x83:
 	  break;
 	case 0x84:
@@ -48,8 +52,17 @@ void menu_map(void)
 	case 0x90:
 	  wildcard_mode=!wildcard_mode;
 	  break;
-	default:
-	  // handle_navigation_keys();
+	case 0xA0:
+	  volume_map_cursor_up();
+	  break;
+	case 0xA1:
+	  volume_map_cursor_right();
+	  break;
+	case 0xA2:
+	  volume_map_cursor_down();
+	  break;
+	case 0xA3:
+	  volume_map_cursor_left();
 	  break;
 	}
     }

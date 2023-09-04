@@ -11,5 +11,10 @@
 
 void volume_map(void);
 void volume_map_bad_blocks(void);
+void volume_map_cursor_up(void);
+void volume_map_cursor_right(void);
+void volume_map_cursor_down(void);
+void volume_map_cursor_left(void);
+void volume_map_cursor_home(void);
 
 #endif /* VOLUME_MAP_H */
