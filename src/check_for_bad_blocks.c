@@ -7,7 +7,7 @@
  */
 
 #include <eos.h>
-#include <msx.h>
+#include <video/tms99x8.h>
 #include <smartkeys.h>
 #include <conio.h>
 #include "directory.h"
@@ -25,7 +25,7 @@ void check_for_bad_blocks(void)
 {
   scan_block_size();
 
-  msx_color(1,15,7);
+  vdp_color(1,15,7);
 
   for (unsigned long i=0;i<current_size;i++)
     {

@@ -6,7 +6,7 @@
  * @verbose Test harness (will be removed before release)
  */
 
-#include <msx.h>
+#include <video/tms99x8.h>
 #include <eos.h>
 #include <conio.h>
 #include "buffer.h"

@@ -7,7 +7,7 @@
  */
 
 #include <eos.h>
-#include <msx.h>
+#include <video/tms99x8.h>
 #include <smartkeys.h>
 #include <conio.h>
 #include "directory.h"
@@ -32,12 +32,14 @@ void format(void)
   smartkeys_display(NULL,NULL,NULL,NULL,NULL,NULL);
   smartkeys_status(tmp);
 
-  if (eos_read_block(current_device,FORMAT_CMD_BLOCK,buffer) == 0x16) // Format error
+  if (current_size != 256) // Ignore this for tapes.
     {
-      state=FORMAT_ERROR;
-      return;
+      if (eos_read_block(current_device,FORMAT_CMD_BLOCK,buffer) == 0x16) // Format error
+	{
+	  state=FORMAT_ERROR;
+	  return;
+	}
     }
-
   // Write a default boot block that properly sets the VDP interrupt, and goes into SmartWriter.
 
   buffer_fill(0x00);

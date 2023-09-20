@@ -7,7 +7,7 @@
  */
 
 #include <eos.h>
-#include <msx.h>
+#include <video/tms99x8.h>
 #include <smartkeys.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -59,7 +59,7 @@ void volume_map_plot(unsigned long block, unsigned char color, char c)
     return;
   
   gotoxy(x,y);
-  msx_color(1,color,7);
+  vdp_color(1,color,7);
   putch(c);
 }
 
@@ -203,51 +203,51 @@ void volume_map(void)
   // print map range
   gotoxy(6,3);
   cprintf("BLOCKS ");
-  msx_color(1,7,7);
+  vdp_color(1,7,7);
   cprintf("%6lu",volume_map_page_block_begin());
-  msx_color(1,15,7);
+  vdp_color(1,15,7);
   cprintf(" TO ");
-  msx_color(1,7,7);
+  vdp_color(1,7,7);
   cprintf("%6lu",volume_map_page_block_end());
   
   // print legend  
   gotoxy(3,16);
-  msx_color(1,COLOR_BOOT,7);
+  vdp_color(1,COLOR_BOOT,7);
   putch(' ');
-  msx_color(1,15,7);
+  vdp_color(1,15,7);
   cprintf("%-6s"," BOOT");
-  msx_color(1,COLOR_DIR,7);
+  vdp_color(1,COLOR_DIR,7);
   putch(' ');
-  msx_color(1,15,7);
+  vdp_color(1,15,7);
   cprintf("%-6s"," DIR");
-  msx_color(1,COLOR_EMPTY,7);
+  vdp_color(1,COLOR_EMPTY,7);
   putch(' ');
-  msx_color(1,15,7);
+  vdp_color(1,15,7);
   cprintf("%-6s"," EMPTY");
-  msx_color(1,COLOR_LAST,7);
+  vdp_color(1,COLOR_LAST,7);
   putch(' ');
-  msx_color(1,15,7);
+  vdp_color(1,15,7);
   cprintf("%-5s"," LAST");
 
   gotoxy(3,17);
-  msx_color(1,COLOR_ALLOCATED,7);
+  vdp_color(1,COLOR_ALLOCATED,7);
   putch(' ');
-  msx_color(1,15,7);
+  vdp_color(1,15,7);
   cprintf("%-6s"," ALLOCATED   ");
-  msx_color(1,COLOR_DATA,7);
+  vdp_color(1,COLOR_DATA,7);
   putch(' ');
-  msx_color(1,15,7);
+  vdp_color(1,15,7);
   cprintf("%-6s"," USED");
-  msx_color(1,COLOR_BAD,7);
+  vdp_color(1,COLOR_BAD,7);
   putch(' ');
-  msx_color(1,15,7);
+  vdp_color(1,15,7);
   cprintf("%-5s"," BAD");
 
   
   // Put label in tab
   directory_label(current_device,label);
   gotoxy(3,1);
-  msx_color(1,15,7);
+  vdp_color(1,15,7);
   cprintf("%s",label);
   
   snprintf(tmp,sizeof(tmp),"   READING VOLUME MAP\n   FROM DEVICE %02x\n   PLEASE WAIT.",current_device);

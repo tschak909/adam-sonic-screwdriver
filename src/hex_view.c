@@ -6,7 +6,7 @@
  * @verbose Hex View
  */
 
-#include <msx.h>
+#include <video/tms99x8.h>
 #include <eos.h>
 #include <smartkeys.h>
 #include <conio.h>
@@ -42,24 +42,24 @@ void hex_view(void)
 
   hex_test_harness();
 
-  msx_color(15,6,7);
+  vdp_color(15,6,7);
   cprintf("%32s",header);
 
   for (int i=0;i<HEX_VIEW_NUM_LINES;i++)
     {
-      msx_color(1,15,7);
+      vdp_color(1,15,7);
       for (int j=0;j<8;j++)
 	{
 	  cprintf("%02x ",*hp++);
 	}
-      msx_color(15,4,7);
+      vdp_color(15,4,7);
       for (int j=0;j<8;j++)
 	{
 	  cprintf("%c",hex_ascii_char(*ap++));
 	}
     }
 
-  msx_color(15,6,7);
+  vdp_color(15,6,7);
   cprintf("%32s",footer);
   
   cursor(true);

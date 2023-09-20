@@ -7,7 +7,7 @@
  */
 
 #include <eos.h>
-#include <msx.h>
+#include <video/tms99x8.h>
 #include <smartkeys.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -77,21 +77,21 @@ void properties(void)
   directory_bkg_remove_bluelines();
 
   // Put selected filename in tab
-  msx_color(1,15,7);
+  vdp_color(1,15,7);
   directory_filename(d[current_entry],fn,&ft);
   gotoxy(3,1);
   cprintf("%s",fn);
 
   // File size in bytes
   gotoxy(17,1);
-  msx_color(1,7,7);
+  vdp_color(1,7,7);
   cprintf("%8lu bytes",properties_filesize(d[current_entry]));
 
   // Date
   gotoxy(16,3);
-  msx_color(1,15,7);
+  vdp_color(1,15,7);
   cprintf("DATE");
-  msx_color(1,7,7);
+  vdp_color(1,7,7);
   d[current_entry].year = 84;
   d[current_entry].month= 04;
   d[current_entry].day=05;
@@ -100,75 +100,75 @@ void properties(void)
   cprintf("%02u-%s-%02u",d[current_entry].year,properties_month(d[current_entry].month),d[current_entry].day);
 
   gotoxy(3,5);
-  msx_color(1,15,7);
+  vdp_color(1,15,7);
   cprintf("%18s","START BLOCK ");
-  msx_color(1,7,7);
+  vdp_color(1,7,7);
   cprintf("%6u",d[current_entry].start_block);
 
   gotoxy(3,6);
-  msx_color(1,15,7);
+  vdp_color(1,15,7);
   cprintf("%18s","ALLOCATED BLOCKS ");
-  msx_color(1,7,7);
+  vdp_color(1,7,7);
   cprintf("%6u",d[current_entry].allocated_blocks);
 
   gotoxy(3,7);
-  msx_color(1,15,7);
+  vdp_color(1,15,7);
   cprintf("%18s","USED BLOCKS ");
-  msx_color(1,7,7);
+  vdp_color(1,7,7);
   cprintf("%6u",d[current_entry].blocks_used);
 
   gotoxy(3,8);
-  msx_color(1,15,7);
+  vdp_color(1,15,7);
   cprintf("%18s","LAST BLOCK BYTES ");
-  msx_color(1,7,7);
+  vdp_color(1,7,7);
   cprintf("%6u",d[current_entry].last_block_bytes_used);
 
   gotoxy(3,10);
-  msx_color(1,15,7);
+  vdp_color(1,15,7);
   cprintf("%18s","LOCKED? ");
-  msx_color(1,7,7);
+  vdp_color(1,7,7);
   cprintf("%6s",properties_yesno(d[current_entry].attributes & 0x80));
 
   gotoxy(3,11);
-  msx_color(1,15,7);
+  vdp_color(1,15,7);
   cprintf("%18s","WRITE PROTECTED? ");
-  msx_color(1,7,7);
+  vdp_color(1,7,7);
   cprintf("%6s",properties_yesno(d[current_entry].attributes & 0x40));
 
   gotoxy(3,12);
-  msx_color(1,15,7);
+  vdp_color(1,15,7);
   cprintf("%18s","READ PROTECTED? ");
-  msx_color(1,7,7);
+  vdp_color(1,7,7);
   cprintf("%6s",properties_yesno(d[current_entry].attributes & 0x20));
 
   gotoxy(3,13);
-  msx_color(1,15,7);
+  vdp_color(1,15,7);
   cprintf("%18s","USER FILE? ");
-  msx_color(1,7,7);
+  vdp_color(1,7,7);
   cprintf("%6s",properties_yesno(d[current_entry].attributes & 0x10));
 
   gotoxy(3,14);
-  msx_color(1,15,7);
+  vdp_color(1,15,7);
   cprintf("%18s","SYSTEM FILE? ");
-  msx_color(1,7,7);
+  vdp_color(1,7,7);
   cprintf("%6s",properties_yesno(d[current_entry].attributes & 0x08));
 
   gotoxy(3,15);
-  msx_color(1,15,7);
+  vdp_color(1,15,7);
   cprintf("%18s","DELETED? ");
-  msx_color(1,7,7);
+  vdp_color(1,7,7);
   cprintf("%6s",properties_yesno(d[current_entry].attributes & 0x04));
 
   gotoxy(3,16);
-  msx_color(1,15,7);
+  vdp_color(1,15,7);
   cprintf("%18s","EXEC PROTECTED? ");
-  msx_color(1,7,7);
+  vdp_color(1,7,7);
   cprintf("%6s",properties_yesno(d[current_entry].attributes & 0x02));
 
   gotoxy(3,17);
-  msx_color(1,15,7);
+  vdp_color(1,15,7);
   cprintf("%18s","BLOCKS LEFT FILE? ");
-  msx_color(1,7,7);
+  vdp_color(1,7,7);
   cprintf("%6s",properties_yesno(d[current_entry].attributes & 0x01));
 
   state=MENU_PROPERTIES;

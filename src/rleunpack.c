@@ -6,7 +6,7 @@
  * @param nMax the maximum # of bytes to unpack
  */
 
-#include <msx.h>
+#include <video/tms99x8.h>
 
 void RLEUnpack(unsigned int p, unsigned char *buf, unsigned int nMax)
 {
@@ -23,7 +23,7 @@ void RLEUnpack(unsigned int p, unsigned char *buf, unsigned int nMax)
 	  // run of bytes
 	  buf++;
 	  z&=0x7f;
-	  msx_vfill(p,*buf,z);
+	  vdp_vfill(p,*buf,z);
 	  buf++;
 	  p += z;
 	}
@@ -31,7 +31,7 @@ void RLEUnpack(unsigned int p, unsigned char *buf, unsigned int nMax)
 	{
 	  // sequence of data
 	  buf++;
-	  msx_vwrite(buf,p,z);
+	  vdp_vwrite(buf,p,z);
 	  buf+=z;
 	  p += z;
 	}

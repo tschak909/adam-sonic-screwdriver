@@ -7,7 +7,7 @@
  */
 
 #include <eos.h>
-#include <msx.h>
+#include <video/tms99x8.h>
 #include <smartkeys.h>
 #include <conio.h>
 #include "directory.h"
@@ -105,22 +105,22 @@ static const unsigned char directory_colors[] = {
 
 void directory_bkg(void)
 {
-  msx_color(1,15,7);
-  msx_set_border(7);
+  vdp_color(1,15,7);
+  vdp_set_border(7);
   RLEUnpack(0x0000,directory_pixels,MODE2_MAX);
   RLEUnpack(0x2000,directory_colors,MODE2_MAX);
 }
 
 void directory_bkg_remove_bluelines(void)
 {
-  msx_vfill(MODE2_ATTR+0x0300+32,0x1F,200);
-  msx_vfill(MODE2_ATTR+0x0500+32,0x1F,200);
-  msx_vfill(MODE2_ATTR+0x0700+32,0x1F,200);
-  msx_vfill(MODE2_ATTR+0x0900+32,0x1F,200);
-  msx_vfill(MODE2_ATTR+0x0B00+32,0x1F,200);
-  msx_vfill(MODE2_ATTR+0x0D00+32,0x1F,200);
-  msx_vfill(MODE2_ATTR+0x0F00+32,0x1F,200);
-  msx_vfill(MODE2_ATTR+0x1100+32,0x1F,200);
+  vdp_vfill(MODE2_ATTR+0x0300+32,0x1F,200);
+  vdp_vfill(MODE2_ATTR+0x0500+32,0x1F,200);
+  vdp_vfill(MODE2_ATTR+0x0700+32,0x1F,200);
+  vdp_vfill(MODE2_ATTR+0x0900+32,0x1F,200);
+  vdp_vfill(MODE2_ATTR+0x0B00+32,0x1F,200);
+  vdp_vfill(MODE2_ATTR+0x0D00+32,0x1F,200);
+  vdp_vfill(MODE2_ATTR+0x0F00+32,0x1F,200);
+  vdp_vfill(MODE2_ATTR+0x1100+32,0x1F,200);
 }
 
 // Print entry into slot on screen at pos
@@ -133,7 +133,7 @@ void directory_display_entry(char *s, unsigned char pos)
   int x = c ? 17 : 4;
   int b = r % 2 ? 0x0F : 0x07;
   
-  msx_color(1,b,7);
+  vdp_color(1,b,7);
   gotoxy(x,y);
   
   cputs(s);
@@ -221,7 +221,7 @@ void directory_display_eos(void)
   r = directory_read_eos(current_device,buffer,BUFFER_SIZE,&err,&rlen);
 
   // Put volume name in tab
-  msx_color(1,15,7);
+  vdp_color(1,15,7);
   directory_filename(d[0],vn,&vt);
   gotoxy(3,1);
   cprintf("%s%c",vn,vt);
@@ -263,7 +263,7 @@ void directory_display_cpm(void)
   unsigned char entry=0, slot=0;
   
   // put CP/M in TAB
-  msx_color(1,15,7);
+  vdp_color(1,15,7);
   gotoxy(3,1);
   cputs(" CP/M VOLUME");
 

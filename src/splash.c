@@ -6,7 +6,7 @@
  * @verbose Splash screen
  */
 
-#include <msx.h>
+#include <video/tms99x8.h>
 #include <conio.h>
 #include "state.h"
 
@@ -1044,10 +1044,10 @@ extern State state;
 
 void splash(void)
 {
-  /* msx_set_mode(2); */
-  /* msx_color(15,1,1); */
-  /* msx_vwrite(splash_colors,MODE2_ATTR,MODE2_MAX); */
-  /* msx_vwrite(splash_pixels,0x0000,MODE2_MAX); */
+  /* vdp_set_mode(2); */
+  /* vdp_color(15,1,1); */
+  /* vdp_vwrite(splash_colors,MODE2_ATTR,MODE2_MAX); */
+  /* vdp_vwrite(splash_pixels,0x0000,MODE2_MAX); */
 
   /* gotoxy(30,1); cputs("'S"); */
   /* gotoxy(2,8); cputs("DISK SONIC SCREWDRIVER  V1.0"); */

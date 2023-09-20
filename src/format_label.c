@@ -7,7 +7,7 @@
  */
 
 #include <eos.h>
-#include <msx.h>
+#include <video/tms99x8.h>
 #include <smartkeys.h>
 #include <conio.h>
 #include "directory.h"
@@ -31,7 +31,7 @@ void format_label(void)
   smartkeys_display(NULL,NULL,NULL,NULL,NULL,"  ABORT");
   smartkeys_status("   ENTER A VOLUME LABEL.");
   
-  msx_color(1,15,7);  
+  vdp_color(1,15,7);  
   input_line(3,1,0,current_label,12,keyVI);
 
   if (keyVI)
