@@ -33,6 +33,9 @@ void menu_map(void)
     {
       switch(input())
 	{
+	case 0x0d:
+	  volume_map_view_block();
+	  break;
 	case 0x1B:
 	  state=DIRECTORY;
 	  break;

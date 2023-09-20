@@ -16,5 +16,6 @@ void volume_map_cursor_right(void);
 void volume_map_cursor_down(void);
 void volume_map_cursor_left(void);
 void volume_map_cursor_home(void);
+void volume_map_view_block(void);
 
 #endif /* VOLUME_MAP_H */

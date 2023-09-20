@@ -231,12 +231,7 @@ void directory_display_eos(void)
     {
       if (!wildcard_mode)
 	{
-	  if (entry_is_locked(d[i]))
-	    {
-	      i++;
-	      continue;
-	    }
-	  else if (entry_is_system_file(d[i]))
+	  if (entry_is_system_file(d[i]))
 	    {
 	      i++;
 	      continue;

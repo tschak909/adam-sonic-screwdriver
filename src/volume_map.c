@@ -125,6 +125,43 @@ void volume_map_cursor_home(void)
   volume_map_cursor(current_block);
 }
 
+void volume_map_view_block(void)
+{
+  if (current_filesystem==UNKNOWN_FILESYSTEM)
+    {
+      state=HEX_VIEW;
+      return;
+    }
+
+  if (current_filesystem==EOS)
+    {
+      unsigned short rlen=0;
+      unsigned char err=0;
+      DirectoryEntry *d = (DirectoryEntry*)buffer;
+      unsigned char i=1;
+
+      directory_read_eos(current_device,buffer,BUFFER_SIZE,&err,&rlen);
+
+      while (!entry_is_blocks_left(d[i]))
+	{
+	  unsigned long block_begin=d[i].start_block;
+	  unsigned long block_end=d[i].start_block+d[i].allocated_blocks;
+
+	  cprintf("%lu %lu",block_begin,block_end);
+	  while(1);
+	  if ((current_block >= block_begin) && (current_block <= block_end))
+	    {
+	      current_entry=i;
+	      state=PROPERTIES;
+	      return;
+	    }
+	  
+	  i++;
+	  d++;
+	}
+    }
+}
+
 void volume_map_bad_blocks(void)
 {
   DCB *dcb = eos_find_dcb(current_device);
