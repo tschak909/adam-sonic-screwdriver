@@ -126,6 +126,8 @@ void scan(void)
       DCB *dcb = NULL;
 
       eos_scan_for_devices();
+
+      scan_block_size();
       
       if (!valid_diskette())
 	invalid_diskette();
