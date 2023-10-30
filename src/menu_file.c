@@ -29,7 +29,7 @@ void menu_file(void)
     strncpy(tmp,menu_item_select_files,sizeof(tmp));
   
   smartkeys_display(NULL,NULL,tmp," RENAME\n  \x1f\x1f""FILE","  VIEW\n  \x1f""FILE","PROPERTIES");
-  snprintf(tmp,sizeof(tmp),"   DEVICE %02u\n   SELECT FILE\n   OPERATION",current_device);
+  snprintf(tmp,sizeof(tmp),"   DEVICE %02x\n   SELECT FILE\n   OPERATION",current_device);
   smartkeys_status(tmp);
   
   eos_start_read_keyboard();
