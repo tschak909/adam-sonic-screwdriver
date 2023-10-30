@@ -45,7 +45,7 @@ void select_drive(void)
 	  state=SCAN;
 	  break;
 	case 0x86:
-	  current_device=18;
+	  current_device=0x18;
 	  state=SCAN;
 	  break;
 	}
