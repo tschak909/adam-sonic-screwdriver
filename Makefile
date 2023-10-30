@@ -11,7 +11,7 @@ OBJS := $(SRCS:%=$(BUILD_DIR)/%.o)
 DEPS := $(OBJS:.o=.d)
 
 CFLAGS=+coleco -subtype=adam  
-LDFLAGS=+coleco -subtype=adam -o$(TARGET_EXEC) -create-app
+LDFLAGS=+coleco -subtype=adam -o$(TARGET_EXEC) -create-app -lsmartkeys -leos
 ASFLAGS=+coleco -subtype=adam
 
 INC_DIRS := $(shell find $(SRC_DIRS) -type d)
