@@ -14,14 +14,13 @@
 #include "input.h"
 #include "state.h"
 #include "globals.h"
+#include "directory.h"
 
 static const char *menu_item_select_files = " SELECT\n  FILES";
 
 void menu_file(void)
 {
   char tmp[48];
-
-  selected_files=255;
   
   if (selected_files)
     snprintf(tmp,sizeof(tmp),"  %02u\nSELECTED",selected_files);
@@ -51,6 +50,18 @@ void menu_file(void)
 	  break;
 	case 0x90:
 	  wildcard_mode=!wildcard_mode;
+	  break;
+	case 0xA0:
+	  directory_up();
+	  break;
+	case 0xA1:
+	  directory_right();
+	  break;
+	case 0xA2:
+	  directory_down();
+	  break;
+	case 0xA3:
+	  directory_left();
 	  break;
 	}
     }
