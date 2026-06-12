@@ -25,7 +25,7 @@ typedef enum _state
     VOLUME_MAP,
     VOLUME_MAP_BAD_BLOCKS,
     MENU_MAP,
-    RETENSION,
+    RETENTION,
     FORMAT_CONFIRM,
     FORMAT,
     FORMAT_ERROR,

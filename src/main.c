@@ -23,7 +23,7 @@
 #include "volume_map.h"
 #include "menu_map.h"
 #include "menu_properties.h"
-#include "retension.h"
+#include "retention.h"
 #include "menu_format_type.h"
 #include "menu_format_type_num_blocks.h"
 #include "format_label.h"
@@ -89,8 +89,8 @@ void main(void)
 	case MENU_MAP:
 	  menu_map();
 	  break;
-	case RETENSION:
-	  retension();
+	case RETENTION:
+	  retention();
 	  break;
 	case FORMAT_LABEL:
 	  format_label();
