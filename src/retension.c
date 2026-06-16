@@ -3,7 +3,7 @@
  * @author  Thomas Cherryhomes
  * @email   thom dot cherryhomes at gmail dot com
  * @license gpl v. 3, see LICENSE for details.
- * @verbose Retention
+ * @verbose Retension
  */
 
 #include <eos.h>
@@ -20,7 +20,7 @@
 #include "input.h"
 #include "cursor.h"
 
-void retention(void)
+void retension(void)
 {
   unsigned long end_block=0;
   DCB *dcb = eos_find_dcb(current_device);

@@ -3,12 +3,12 @@
  * @author  Thomas Cherryhomes
  * @email   thom dot cherryhomes at gmail dot com
  * @license gpl v. 3, see LICENSE for details.
- * @verbose Retention
+ * @verbose Retension
  */
 
-#ifndef RETENTION_H
-#define RETENTION_H
+#ifndef RETENSION_H
+#define RETENSION_H
 
-void retention(void);
+void retension(void);
 
-#endif /* RETENTION_H */
+#endif /* RETENSION_H */
